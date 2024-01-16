@@ -7,7 +7,7 @@ import 'controller/datacontroller.dart';
 
 void main() {
   runApp(const MyApp());
-  Get.put<mydatacontroller>(mydatacontroller());
+ Get.put<mydatacontroller>(mydatacontroller());
 
 }
 
@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         ),
         // ignore: prefer_const_constructors
         home: Scaffold(
-          body: screen1(),
+          body: Screen1(),
         ));
   }
 }

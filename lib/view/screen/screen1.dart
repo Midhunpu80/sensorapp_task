@@ -1,33 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sensor_app/controller/datacontroller.dart';
+import 'package:sensor_app/view/utility/alltext.dart';
+import 'package:sensor_app/view/utility/colors.dart';
 
-class screen1 extends StatelessWidget {
-  final  mydatacontroller controller = Get.find();
+class Screen1 extends StatelessWidget {
+  final mydatacontroller controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: SizedBox(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Obx(() => Text(
-                    'Latitude: ${controller.locationData.value?.latitude ?? 'N/A'}')),
-                Obx(() => Text(
-                    'Longitude: ${controller.locationData.value?.longitude ?? 'N/A'}')),
-                Obx(() => Text(
-                    'Altitude: ${controller.locationData.value?.altitude ?? 'N/A'}')),
-                Obx(() => Text(
-                    'Velocity: ${controller.locationData.value?.speed ?? 'N/A'}')),
-                Obx(() => Text('Accelerometer: ${controller.accelerometerValues}')),
-                Obx(() => Text('Gyroscope: ${controller.gyroscopeValues}')),
-                Obx(() => Text('Magnetometer: ${controller.magnetometerValues}')),
-              ]),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: bl,
+          title: alltext(
+              txt: "Sensor Data",
+              col: wh,
+              siz: 18,
+              wei: FontWeight.bold,
+              max: 1),
         ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _buildSensorData(
+                  'Latitude', controller.locationData.value?.latitude),
+              _buildSensorData(
+                  'Longitude', controller.locationData.value?.longitude),
+              _buildSensorData(
+                  'Altitude', controller.locationData.value?.altitude),
+              _buildSensorData(
+                  'Velocity', controller.locationData.value?.speed),
+              _buildSensorData('Accelerometer', controller.accelerometerValues),
+              _buildSensorData('Gyroscope', controller.gyroscopeValues),
+              _buildSensorData('Magnetometer', controller.magnetometerValues),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSensorData(String label, dynamic value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            '$label:',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              value?.toString() ?? 'N/A',
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+        ],
       ),
     );
   }
