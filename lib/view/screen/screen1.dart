@@ -9,9 +9,16 @@ class Screen1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(controller.locationData.value?.latitude);
+    
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: Icon(
+            Icons.sensor_window_rounded,
+            color: wh,
+          ),
+          toolbarHeight: 70,
           backgroundColor: bl,
           title: alltext(
               txt: "Sensor Data",

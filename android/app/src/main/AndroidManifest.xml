@@ -1,4 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- AndroidManifest.xml for location permissions -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+ 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_..." />
     <application
         android:label="sensor_app"
         android:name="${applicationName}"

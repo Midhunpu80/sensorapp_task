@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:sensor_app/view/screen/screen1.dart';
 
 import 'controller/datacontroller.dart';
